@@ -40,20 +40,22 @@ public class registration {
     @GET
     @Produces("application/json")
     @Path("add/truck")
-    public String addTruck(@QueryParam("title") String title, @QueryParam("logo_img") String logo_img, @QueryParam("menu_img")  String menu_img, @QueryParam("phone")  String phone, @QueryParam("email") String email)
+    public String addTruck(@QueryParam("title") String title, @QueryParam("logo_img") String logo_img, @QueryParam("menu_img")  String menu_img, @QueryParam("phone")  String phone, 
+                @QueryParam("email") String email, @QueryParam("username") String username, @QueryParam("password") String password)
     {
-        String retval = "";
+        ServiceResult retval = null;
         boolean truck_exists = usersInput.TruckExists(title, email);
         
         if(truck_exists)
         {
-            retval = "Failed: Truck with similar email/title already exists";
+            retval = new ServiceResult(ServiceResult.status.failed, "Truck with similar email/title already exists");
         }
         else
         {
-            retval = "Success: "+usersInput.AddTruck(title, logo_img, menu_img, phone, email);
+            String truck_id = usersInput.AddTruck(title, phone, email, phone, email, username, password);
+            retval = new ServiceResult(ServiceResult.status.success, truck_id);
         }
-        return retval;
+        return retval.ToJson();
     }
     
     /**

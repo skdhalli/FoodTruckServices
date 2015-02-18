@@ -1,2 +1,4 @@
 com\food\foodtruckservices\ApplicationConfig.class
+com\food\foodtruckservices\ServiceResult$status.class
+com\food\foodtruckservices\ServiceResult.class
 com\food\foodtruckservices\registration.class
