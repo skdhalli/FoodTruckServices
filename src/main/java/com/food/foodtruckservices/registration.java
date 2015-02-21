@@ -52,7 +52,7 @@ public class registration {
         }
         else
         {
-            String truck_id = usersInput.AddTruck(title, phone, email, phone, email, username, password);
+            String truck_id = usersInput.AddTruck(title, logo_img, menu_img, phone, email, username, password);
             retval = new ServiceResult(ServiceResult.status.success, truck_id);
         }
         return retval.ToJson();
