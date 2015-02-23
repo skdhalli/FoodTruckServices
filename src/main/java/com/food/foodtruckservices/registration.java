@@ -41,7 +41,7 @@ public class registration {
     @Produces("application/json")
     @Path("add/truck")
     public String addTruck(@QueryParam("title") String title, @QueryParam("logo_img") String logo_img, @QueryParam("menu_img")  String menu_img, @QueryParam("phone")  String phone, 
-                @QueryParam("email") String email, @QueryParam("username") String username, @QueryParam("password") String password)
+                @QueryParam("email") String email, @QueryParam("password") String password)
     {
         ServiceResult retval = null;
         boolean truck_exists = usersInput.TruckExists(title, email);
@@ -52,7 +52,7 @@ public class registration {
         }
         else
         {
-            String truck_id = usersInput.AddTruck(title, logo_img, menu_img, phone, email, username, password);
+            String truck_id = usersInput.AddTruck(title, logo_img, menu_img, phone, email, password);
             retval = new ServiceResult(ServiceResult.status.success, truck_id);
         }
         return retval.ToJson();
